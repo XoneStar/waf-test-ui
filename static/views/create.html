@@ -1,0 +1,38 @@
+<h3 class="text-center">添加WAF规则</h3>
+
+<div class="container" ng-controller="CreateCtrl">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <fieldset>
+                <legend>
+                    WAF防护地址(nginx.conf)
+                </legend>
+            </fieldset>
+            <ol>
+                <li>
+                    http://192.168.30.87:8080
+                    <button type="button" class="btn btn-sm btn-default">修改</button>
+                </li>
+            </ol>
+            <form ng-submit="createRule(title, naxsi_core, naxsi)">
+                <fieldset>
+                    <legend>添加测试规则</legend>
+                    <div class="form-group">
+                        <label for="title">规则说明：</label>
+                        <textarea class="form-control" ng-model="title" id="title" rows="1" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="naxsi_core">核心规则[MainRule](naxsi_core.rules)：</label>
+                        <textarea class="form-control" ng-model="naxsi_core" id="naxsi_core" rows="5"
+                                  required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="naxsi">子规则[CheckRule](naxsi.rules)：</label>
+                        <textarea class="form-control" ng-model="naxsi" id="naxsi" rows="2" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-default">提交</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

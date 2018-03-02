@@ -1,0 +1,36 @@
+<h3 class="text-center">{{ title }}
+    <button class="btn btn-sm btn-default" ng-click="details()">编辑</button>
+    <a class="btn btn-sm btn-default" ng-click="deleteRule(id)">删除</a>
+
+</h3>
+
+<div class="row" ng-show="isShow">
+    <div class="col-md-8 col-md-offset-2">
+        <fieldset>
+            <legend>
+                WAF防护地址(nginx.conf)
+            </legend>
+        </fieldset>
+        <ol>
+            <li>
+                {{ url }}
+                <button type="button" class="btn btn-sm btn-default" ng-click="showDailog()">修改</button>
+            </li>
+        </ol>
+        <form ng-submit="updateRule(naxsi_core, naxsi)">
+            <fieldset>
+                <legend>修改规则</legend>
+                <div class="form-group">
+                    <label for="naxsi_core">核心规则[MainRule](naxsi_core.rules)：</label>
+                    <textarea class="form-control" ng-model="naxsi_core" id="naxsi_core" rows="5"
+                              required>{{ naxsi_core }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="naxsi">子规则[CheckRule](naxsi.rules)：</label>
+                    <textarea class="form-control" ng-model="naxsi" id="naxsi" rows="2" required>{{ naxsi }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-sm btn-default">提交</button>
+            </fieldset>
+        </form>
+    </div>
+</div>

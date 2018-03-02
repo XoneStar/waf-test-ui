@@ -1,0 +1,8 @@
+SecRulesEnabled;
+DeniedUrl "/RequestDenied"; #拒绝访问时展示的页面
+## 检查规则
+CheckRule "$SQL >= 8" BLOCK;
+CheckRule "$RFI >= 8" BLOCK;
+CheckRule "$TRAVERSAL >= 4" BLOCK;
+CheckRule "$EVADE >= 4" BLOCK;
+CheckRule "$XSS >= 8" BLOCK;

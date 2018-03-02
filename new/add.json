@@ -1,0 +1,7 @@
+{
+  "eb4553e8-1c5e-11e8-8c6e-005056c00008": {
+    "naxsi_core": "MainRule \"rx:[\\s\\S]+(Runtime\\.getRuntime\\(\\)\\.exec)[\\s\\S]+\" \"msg:tomcat RCE\" \"mz:RAW_BODY\" \"s:$TOMCATRCE:6\" id:1750;\nMainRule \"rx:cmd\\.exe|/bin/bash|bash|cmd|/bin/sh|powershell\" \"msg:tomcat RCE\" \"mz:RAW_BODY\" \"s:$TOMCATRCE:5\" id:1751;\nMainRule \"rx:ipconfig|ifconfig|netstat|whoami|wget|curl\" \"msg:tomcat RCE\" \"mz:RAW_BODY\" \"s:$TOMCATRCE:4\" id:1752;",
+    "title": "tomcat CVE-2017-12636:1800-1850",
+    "naxsi": "CheckRule \"$RCE >= 8\" BLOCK;"
+  }
+}
