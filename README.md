@@ -10,10 +10,14 @@
 #### or
 
 1. docker pull creatorx/waf-test-ui
-2. docker run --name nginx_naxsi -d -p 80:80 -p 5000:5000 creatorx/waf-test-ui
+2. docker run --name waf-test-ui -d -p 80:80 -p 5000:5000 creatorx/waf-test-ui
 
 
 #### waf test ui
+web URL: http://ip:5000
+
+nginx post : 80
+ 
 ![waf test ui screenshots](images/1.png)
 
 ![waf test ui screenshots](images/2.png)
