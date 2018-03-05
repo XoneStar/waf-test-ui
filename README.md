@@ -16,7 +16,7 @@
 #### waf test ui
 web URL: http://ip:5000
 
-nginx post : 80
+nginx port : 80
  
 ![waf test ui screenshots](images/1.png)
 
