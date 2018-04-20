@@ -1,6 +1,6 @@
 import json
+import os
 import re
-import subprocess
 import uuid
 from string import Template
 
@@ -90,7 +90,7 @@ def update_rule():
             result = change_json2str(rules)
             conf_parse.add_rule2file(result[0], result[1])
             # 重启容器[docker restart $(docker ps -q)]/重启nginx [nginx -s reload]
-            subprocess.call('nginx -s reload', shell=True)
+            os.system('nginx -s reload')
             status = '0'
             message = '成功'
         else:
@@ -113,7 +113,7 @@ def add_rule():
         result = change_json2str(rules)
         conf_parse.add_rule2file(result[0], result[1])
         # 重启容器[docker restart $(docker ps -q)]/重启nginx [nginx -s reload]
-        subprocess.call('nginx -s reload', shell=True)
+        os.system('nginx -s reload')
         return jsonify({"status": "0", "message": "成功"})
     except Exception as e:
         print(e)
@@ -131,7 +131,7 @@ def edit_rule():
         result = change_json2str(rules)
         conf_parse.add_rule2file(result[0], result[1])
         # 重启容器[docker restart $(docker ps -q)]/重启nginx [nginx -s reload]
-        subprocess.call('nginx -s reload', shell=True)
+        os.system('nginx -s reload')
         return {"status": "0", "message": "成功"}
     except:
         return {"status": "-1", "message": "处理异常，失败"}

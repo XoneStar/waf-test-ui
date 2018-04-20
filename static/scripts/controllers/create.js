@@ -44,6 +44,19 @@ angular.module('WafUiApp')
 
         };
 
+        $scope.showDailog = function () {
+            alertify.prompt('防护地址修改：', $scope.url, function (evt, url) {
+
+                if (url !== '') {
+                    Rule.updateUrl({url: url}, function (data) {
+                        alertify.alert(data.message);
+                    }, function (err) {
+                        alertify.alert(err.data);
+                    });
+                }
+            });
+        };
+
         // update url
         $scope.updateUrl = function (url) {
 

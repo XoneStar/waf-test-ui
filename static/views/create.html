@@ -10,8 +10,8 @@
             </fieldset>
             <ol>
                 <li>
-                    http://192.168.30.87:8080
-                    <button type="button" class="btn btn-sm btn-default">修改</button>
+                    {{ url }}
+                    <button type="button" class="btn btn-sm btn-default" ng-click="showDailog()">修改</button>
                 </li>
             </ol>
             <form ng-submit="createRule(title, naxsi_core, naxsi)">
