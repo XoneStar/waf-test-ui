@@ -55,6 +55,7 @@ angular.module('WafUiApp')
                 if (url !== '') {
                     Rule.updateUrl({url: url}, function (data) {
                         alertify.alert(data.message);
+                        $scope.url = url
                     }, function (err) {
                         alertify.alert(err.data);
                     });
