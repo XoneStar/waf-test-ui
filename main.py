@@ -178,8 +178,8 @@ def get_logs():
     try:
         data = ''
         # /usr/local/nginx/logs/
-        if os.path.exists('error.log'):
-            with open('error.log') as log:
+        if os.path.exists('/usr/local/nginx/logs/error.log'):
+            with open('/usr/local/nginx/logs/error.log') as log:
                 data = log.readlines()
         return jsonify(logs=data)
     except:
