@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sys
 import uuid
 from string import Template
 
@@ -24,14 +25,14 @@ def index():
 
 # 加载已添加的规则
 def load_rule():
-    with open('new/add.json', 'r', encoding='utf-8') as f:
+    with open(sys.path[0] + 'new/add.json', 'r', encoding='utf-8') as f:
         rules = json.load(f)
     return rules
 
 
 # 保存规则到json
 def save_rule(rules_json):
-    with open('new/add.json', 'w', encoding='utf-8') as f:
+    with open(sys.path[0] + 'new/add.json', 'w', encoding='utf-8') as f:
         f.write(json.dumps(rules_json, ensure_ascii=False, indent=4))
 
 
@@ -68,6 +69,7 @@ def modify_url():
     status = '-1'
     if re.match(r'^https?:/{2}\w.+$', url):
         conf_parse.update_conf(url)
+        os.system('nginx -s reload')
         status = '0'
         message = '成功'
     else:
@@ -167,4 +169,5 @@ def remove_rule():
 
 
 if __name__ == '__main__':
+    os.system('nginx -g daemon off;')
     app.run(host='0.0.0.0', debug=False, threaded=True)
