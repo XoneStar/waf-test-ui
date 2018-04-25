@@ -21,9 +21,14 @@ angular.module('WafUiApp')
             }
         });
 
+        var Conf = $resource('api/v1/getURL/', null, {});
+
+        Conf.get(function (data) {
+            $scope.url = data.url;
+        });
+
         $scope.createRule = function (title, naxsi_core, naxsi) {
 
-            //TODO: check if name is alphanumeric
             Rule.createRule({
                 title: title,
                 naxsi_core: naxsi_core,
