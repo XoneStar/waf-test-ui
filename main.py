@@ -69,6 +69,7 @@ def modify_url():
     status = '-1'
     if re.match(r'^https?:/{2}\w.+$', url):
         conf_parse.update_conf(url)
+        os.system('nginx')
         os.system('nginx -s reload')
         status = '0'
         message = '成功'
@@ -92,6 +93,7 @@ def update_rule():
             result = change_json2str(rules)
             conf_parse.add_rule2file(result[0], result[1])
             # 重启容器[docker restart $(docker ps -q)]/重启nginx [nginx -s reload]
+            os.system('nginx')
             os.system('nginx -s reload')
             status = '0'
             message = '成功'
@@ -115,6 +117,7 @@ def add_rule():
         result = change_json2str(rules)
         conf_parse.add_rule2file(result[0], result[1])
         # 重启容器[docker restart $(docker ps -q)]/重启nginx [nginx -s reload]
+        os.system('nginx')
         os.system('nginx -s reload')
         return jsonify({"status": "0", "message": "成功"})
     except Exception as e:
@@ -133,6 +136,7 @@ def edit_rule():
         result = change_json2str(rules)
         conf_parse.add_rule2file(result[0], result[1])
         # 重启容器[docker restart $(docker ps -q)]/重启nginx [nginx -s reload]
+        os.system('nginx')
         os.system('nginx -s reload')
         return {"status": "0", "message": "成功"}
     except:
@@ -168,6 +172,19 @@ def remove_rule():
         return jsonify({"status": "-1", "message": "处理异常，失败"})
 
 
+# 读取防护日志
+@app.route(API_V1 + 'logs', methods=['GET'])
+def get_logs():
+    try:
+        data = ''
+        # /usr/local/nginx/logs/
+        if os.path.exists('error.log'):
+            with open('error.log') as log:
+                data = log.readlines()
+        return jsonify(logs=data)
+    except:
+        return jsonify({"logs": "处理异常，失败"})
+
+
 if __name__ == '__main__':
-    os.system('nginx -g daemon off;')
-    app.run(host='0.0.0.0', debug=False, threaded=True)
+    app.run(host='0.0.0.0', debug=True, threaded=True)

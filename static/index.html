@@ -62,13 +62,49 @@
             </button>
             <a class="btn btn-default btn-block" ng-href="#/create"><i class="glyphicon glyphicon-plus"></i> 添加规则
             </a>
+            <button class="btn btn-default btn-block" ng-click="combinedLogs()"><i
+                    class="glyphicon glyphicon-refresh"></i> 查看防护日志
+            </button>
         </div>
         <div class="col-md-8">
             <div ng-view=""></div>
         </div>
 
     </div>
+    <div modal-show="showCombinedLogsDialog" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">防护日志</h4>
+                </div>
+                <div class="modal-body combined-logs">
+                    <span class="text-left combined-logs-line " ng-repeat="line in logs">{{ line }}</span>
+                </div>
+                <div class="modal-footer">
+
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="lineLimit">行数</label>
+                            <input type="number" name="lineLimit" class="form-control lines-input"
+                                   ng-model="lineLimit"/>
+                        </div>
+
+                        <button ng-click="combinedLogs()" class="btn btn-default"><span
+                                class="glyphicon glyphicon-refresh"></span> 刷新
+                        </button>
+                        <button ng-click="scrollToBottom()" class="btn btn-default"><span
+                                class="glyphicon glyphicon-arrow-down"></span> 滑到底部
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -85,6 +121,8 @@
 <script src="scripts/controllers/create.js"></script>
 <script src="scripts/controllers/rule.js"></script>
 <script src="scripts/directives/edit.js"></script>
+<script src="scripts/directives/modal.js"></script>
+<script src="scripts/services/logs.js"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
