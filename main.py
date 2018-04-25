@@ -25,14 +25,14 @@ def index():
 
 # 加载已添加的规则
 def load_rule():
-    with open(sys.path[0] + 'new/add.json', 'r', encoding='utf-8') as f:
+    with open(sys.path[0] + '/new/add.json', 'r', encoding='utf-8') as f:
         rules = json.load(f)
     return rules
 
 
 # 保存规则到json
 def save_rule(rules_json):
-    with open(sys.path[0] + 'new/add.json', 'w', encoding='utf-8') as f:
+    with open(sys.path[0] + '/new/add.json', 'w', encoding='utf-8') as f:
         f.write(json.dumps(rules_json, ensure_ascii=False, indent=4))
 
 
